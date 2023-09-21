@@ -34,13 +34,15 @@ return s.charAt(0).toUpperCase()+s.slice(1);
      handleNextClick=async()=>
      {
 
-          
+          this.props.setProgress(10);
           
           let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=632babb93466405aa4c19d6774bd3ea8&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
           this.setState({loading:true}) 
           let data= await fetch(url);
-           console.log(data);
+          this.props.setProgress(50);
+         
           let parsedData=await data.json();
+          this.props.setProgress(70);
           
           this.setState({
            page:this.state.page+1,
@@ -49,21 +51,21 @@ return s.charAt(0).toUpperCase()+s.slice(1);
           
           
           })
-          console.log(this.state.articles);
+          this.props.setProgress(100);
      
           
 
      }
  handlePreviousClick=async()=>{
-
+     this.props.setProgress(10);
      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=632babb93466405aa4c19d6774bd3ea8&page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
      this.setState({loading:true})    
      let data= await fetch(url);
+     this.props.setProgress(50);
            
-           console.log(data);
           let parsedData=await data.json();
           
-          
+          this.props.setProgress(70);
           this.setState({
            page:this.state.page-1,
            articles:parsedData.articles,
@@ -71,19 +73,19 @@ return s.charAt(0).toUpperCase()+s.slice(1);
           
           
           })
-          console.log(this.state.articles);
+          this.props.setProgress(100);
 
 }
     async componentDidMount()
-     {
+     {   this.props.setProgress(10);
           this.setState({loading:true})
           let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=632babb93466405aa4c19d6774bd3ea8&page=1&pageSize=${this.props.pageSize}`;
            let data= await fetch(url);
-           console.log(data);
+           this.props.setProgress(30);
           let parsedData=await data.json();
+          this.props.setProgress(70);
           this.setState({articles:parsedData.articles,totalResults:parsedData.totalResults,loading:false});
-          console.log(this.state.articles);
-
+          this.props.setProgress(100);
      }
     
   render() {
