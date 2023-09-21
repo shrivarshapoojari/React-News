@@ -16,7 +16,8 @@ import LoadingBar from 'react-top-loading-bar'
  
  export default class App extends Component {
 
-
+   apiKey=process.env.REACT_APP_NEWS_API
+ 
        constructor()
         {
          super();
@@ -45,14 +46,14 @@ setProgress=(progress)=>{
               
         <Routes>
 
-               <Route exact path="/" element= {<News setProgress= {this.setProgress} />} />
-               <Route exact path="/business" element= {<News setProgress= {this.setProgress}  key='business' category='business'/>} />   
+               <Route exact path="/" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey} />} />
+               <Route exact path="/business" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey}  key='business' category='business'/>} />   
                 {/* by giving differnt keys components will re render automatically else when u click bussiness the news wont be updated about business */}
-               <Route exact path="/entertainment" element= {<News setProgress= {this.setProgress}  key='entertainment' category='entertainment'/>} />
-               <Route exact path="/general" element= {<News setProgress= {this.setProgress}   key='general' category='general'/>} />
-               <Route exact path="/health" element= {<News setProgress= {this.setProgress}  key='health' category='health'/>} />
-               <Route exact path="/sports" element= {<News setProgress= {this.setProgress}  key='sports' category='sports'/>} />
-               <Route exact path="/technology" element= {<News setProgress= {this.setProgress}  key='tech' category='technology'/>} />
+               <Route exact path="/entertainment" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey}  key='entertainment' category='entertainment'/>} />
+               <Route exact path="/general" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey}   key='general' category='general'/>} />
+               <Route exact path="/health" element= {<News setProgress= {this.setProgress}  apiKey={this.apiKey} key='health' category='health'/>} />
+               <Route exact path="/sports" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey}  key='sports' category='sports'/>} />
+               <Route exact path="/technology" element= {<News setProgress= {this.setProgress} apiKey={this.apiKey}  key='tech' category='technology'/>} />
 
                
                 
